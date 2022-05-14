@@ -2,6 +2,9 @@
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
+const loader = document.getElementById('loader');
+const search = document.getElementById('country');
+
 
 /*
 const response = new XMLHttpRequest();
@@ -51,13 +54,14 @@ function getCountryData(country){
         .then(res => res.json())
         .then(data => {
             const [country] = data;
-            console.log(country);
+            //console.log(country);
             renderCountry(country);
             const neighbour = country.borders;
-            console.log(neighbour);
+            //console.log(neighbour);
             neighbour.forEach(element => {
                 getNeighborCountry(element);
             });
+            loader.hidden = true;
         });
     
 }
@@ -72,4 +76,18 @@ function getNeighborCountry(country){
     });
 }
 
-getCountryData('usa');
+//getCountryData('usa');
+
+
+// Event Listeners
+search.addEventListener('input', (e) => {
+    loader.hidden = false;
+    if(e.target.value.length >= 2){
+        setTimeout(() => {
+            getCountryData(e.target.value);
+        }, 2000);
+        
+    }else{
+        
+    }
+});
