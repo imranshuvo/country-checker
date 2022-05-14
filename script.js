@@ -83,11 +83,9 @@ function getNeighborCountry(country){
 search.addEventListener('input', (e) => {
     loader.hidden = false;
     if(e.target.value.length >= 2){
-        setTimeout(() => {
-            getCountryData(e.target.value);
-        }, 2000);
-        
+        let country = e.target.value;
+        getCountryData(country);
     }else{
-        
+       
     }
 });
