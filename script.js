@@ -21,15 +21,15 @@ response.addEventListener('load', function(){
 });
 */
 function getLanguages(data){
- const languages = Object.values(data.languages);
- return languages.join(',');
+    const languages = Object.values(data.languages);
+    return languages.join(',');
 }
 function getCurrencies(data){
-const curr = Object.values(data.currencies);
-let currencies = curr.map(a => {
-    return a.name;
-});
-return currencies.join(',');
+    const curr = Object.values(data.currencies);
+    let currencies = curr.map(a => {
+        return a.name;
+    });
+    return currencies.join(',');
 }
 function renderCountry(data, className = '') {
 const html = `
