@@ -1,9 +1,12 @@
 'use strict';
 
 const btn = document.querySelector('.btn-country');
-const countriesContainer = document.querySelector('.countries');
+const countriesContainer = document.querySelector('.countries-c');
 const loader = document.getElementById('loader');
 const search = document.getElementById('country');
+const button = document.getElementById('submit');
+
+button.disable = true;
 
 
 /*
@@ -80,12 +83,25 @@ function getNeighborCountry(country){
 
 
 // Event Listeners
-search.addEventListener('input', (e) => {
+button.addEventListener('click', (e) => {
     loader.hidden = false;
-    if(e.target.value.length >= 2){
-        let country = e.target.value;
+    if(search.value.length >= 2){
+        let country = search.value;
+        //first clear the screen
+        let countriesEl = countriesContainer.getElementsByClassName('country');
+        //console.log(countriesEl);
+        //console.log(typeof countriesEl);
+        if(countriesEl.length > 0){
+            let countriesElArr = Object.values(countriesEl);
+            if(countriesElArr.length > 0){
+                countriesElArr.forEach(element => {
+                    element.remove();
+                });
+            }
+        }
         getCountryData(country);
     }else{
-       
+       alert('Must be at least 2 charaters');
+       loader.hidden = true;
     }
 });
