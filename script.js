@@ -61,9 +61,12 @@ function getCountryData(country){
             renderCountry(country);
             const neighbour = country.borders;
             //console.log(neighbour);
-            neighbour.forEach(element => {
-                getNeighborCountry(element);
-            });
+            if(neighbour){
+                neighbour.forEach(element => {
+                    getNeighborCountry(element);
+                });
+            }
+            
             loader.hidden = true;
         });
     
